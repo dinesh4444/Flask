@@ -15,17 +15,17 @@ To install flask
 ### Basic Flask app 
 
 --------------------------------------------------------------------------------
-from flask import Flask
+    from flask import Flask
 
-app = Flask(__name__)
+    app = Flask(__name__)
 
-@app.route('/')
-def welcome():
-    return "Welcome to Flask"
+    @app.route('/')
+    def welcome():
+        return "Welcome to Flask"
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    if __name__ == '__main__':
+        app.run(debug=True)
 
 -------------------------------------------------------------------------------
 
@@ -35,32 +35,32 @@ if __name__ == '__main__':
 Here is an example of how to build a URL Dynamically using the following syntax:
 
 ---------------------------------------------------------------------------
-from flask import Flask, redirect, url_for
+    from flask import Flask, redirect, url_for
 
-app = Flask(__name__)
+    app = Flask(__name__)
 
 
-@app.route('/')
-def welcome():
-    return "This is first page"
+    @app.route('/')
+    def welcome():
+        return "This is first page"
 
-@app.route('/sucess/<int:score>')
-def sucess(score):
-    return "<html><body><h1>The person has passed and score the marks</h1></body></html>"
+    @app.route('/sucess/<int:score>')
+    def sucess(score):
+        return "<html><body><h1>The person has passed and score the marks</h1></body></html>"
 
-@app.route('/fail/<int:score>')
-def fail(score):
-    return "The person has failed and score the marks is " + str(score)
+    @app.route('/fail/<int:score>')
+    def fail(score):
+        return "The person has failed and score the marks is " + str(score)
 
-#Result checker
-@app.route('/result/<int:marks>')
-def result(marks):
-    result = ""
-    if marks < 50:
-        result ="fail"
-    else:
-        result = "sucess"
-    return redirect(url_for(result, score=marks))
+    #Result checker
+    @app.route('/result/<int:marks>')
+    def result(marks):
+        result = ""
+        if marks < 50:
+            result ="fail"
+        else:
+            result = "sucess"
+        return redirect(url_for(result, score=marks))
 
 -----------------------------------------------------------------------------
 
@@ -108,23 +108,23 @@ to the application
 # Jinja2 
 
 ---------------------------------------------------------------------------------------
-{% if result>= 50 %}
-<h4>Your Result is Passed</h4>
-{% else %}
-<h4>Your result is failde</h4>
-{% endif %}
+    {% if result>= 50 %}
+    <h4>Your Result is Passed</h4>
+    {% else %}
+    <h4>Your result is failde</h4>
+    {% endif %}
 -----------------------------------------------------------------------------------
 
 # webcam index.html
 ----------------------------------------------------------------------------------
-<html>
-    <body>
-        <h1>Live streaming</h1>
-        <div>
-            <img src="{{ url_for('video') }}" width="50%">
-        </div>
-    </body>
-</html>
+    <html>
+        <body>
+            <h1>Live streaming</h1>
+            <div>
+                <img src="{{ url_for('video') }}" width="50%">
+            </div>
+        </body>
+    </html>
 --------------------------------------------------------------------------------
 
 # Live camera straming code
