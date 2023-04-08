@@ -14,7 +14,7 @@ To install flask
 
 ### Basic Flask app 
 
----
+--------------------------------------------------------------------------------
 from flask import Flask
 
 app = Flask(__name__)
@@ -27,14 +27,14 @@ def welcome():
 if __name__ == '__main__':
     app.run(debug=True)
 
----
+-------------------------------------------------------------------------------
 
 * this flask app is running on http://127.0.0.1:5000/  this port 
 
 # Building URL Dynamically
 Here is an example of how to build a URL Dynamically using the following syntax:
 
----
+---------------------------------------------------------------------------
 from flask import Flask, redirect, url_for
 
 app = Flask(__name__)
@@ -52,7 +52,7 @@ def sucess(score):
 def fail(score):
     return "The person has failed and score the marks is " + str(score)
 
-* Result checker
+#Result checker
 @app.route('/result/<int:marks>')
 def result(marks):
     result = ""
@@ -62,7 +62,7 @@ def result(marks):
         result = "sucess"
     return redirect(url_for(result, score=marks))
 
----
+-----------------------------------------------------------------------------
 
 redirect = is to redirect to the perticular url with a trailing slash with a url_for(page, rule) parameter
 
@@ -70,7 +70,7 @@ redirect = is to redirect to the perticular url with a trailing slash with a url
 Create a templates folder in current directory and make index.html, and pages you want to add 
 to the application
 
----
+--------------------------------------------------------------------------------------
 <!DOCTYPE html>
 
 <html>
@@ -103,20 +103,20 @@ to the application
     </body>
 </html>
 
----
+----------------------------------------------------------------------------------------
 
 # Jinja2 
 
----
+---------------------------------------------------------------------------------------
 {% if result>= 50 %}
-<h1>Your Result is Passed</h1>
+<h4>Your Result is Passed</h4>
 {% else %}
-<h1>Your result is failde</h1>
+<h4>Your result is failde</h4>
 {% endif %}
----
+-----------------------------------------------------------------------------------
 
 # webcam index.html
----
+----------------------------------------------------------------------------------
 <html>
     <body>
         <h1>Live streaming</h1>
@@ -125,24 +125,24 @@ to the application
         </div>
     </body>
 </html>
----
+--------------------------------------------------------------------------------
 
 # Live camera straming code
 
----
-def generate_frames():
-    while True:
-        ## Read the camera frame
-        sucess, frame = cam.read()
-        if not sucess:
-            break
-        else:
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-        yield(b'--frame\r\n'
-              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+-------------------------------------------------------------------------------
+    def generate_frames():
+        while True:
+            ## Read the camera frame
+            sucess, frame = cam.read()
+            if not sucess:
+                break
+            else:
+                ret, buffer = cv2.imencode('.jpg', frame)
+                frame = buffer.tobytes()
+            yield(b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
----
+------------------------------------------------------------------------------------
 
 
 
